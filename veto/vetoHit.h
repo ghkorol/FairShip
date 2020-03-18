@@ -31,7 +31,8 @@ class vetoHit : public ShipHit
     TGeoNode* GetNode();
     /** Modifier **/
     void SetEloss(Double_t val){fdigi=val;}
-    void SetTDC(Double_t val){ft=val;}     
+    void SetTDC(Double_t val){ft=val;}
+    void SetWeight(Double_t val){w=val;}     
 
     /** Output to screen **/
 
@@ -42,12 +43,14 @@ class vetoHit : public ShipHit
     void setInvalid() {flag = false;}
     void setIsValid() {flag = true;}
     bool isValid() const {return flag;}
+    Double_t GetWeight(){return w;}
   private:
     Double_t ft;
     vetoHit(const vetoHit& point);
     vetoHit operator=(const vetoHit& point);
 
     Float_t flag;   ///< flag
+    Double_t w; //
 
     ClassDef(vetoHit,1);
 
