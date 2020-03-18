@@ -1,0 +1,7 @@
+.x plotDigiHist.C("DigiXY",2,3)
+.x plotDigiHist.C("DigiZX",2,3)
+.x plotDigiHist.C("DigiZY",2,2)
+.x plotDigiHist.C("PointXY",1,2)
+.x plotDigiHist.C("PointZX",1,2)
+.x plotDigiHist.C("PointZY",1,2)
+.x plotDigiHist.C("h_detId")

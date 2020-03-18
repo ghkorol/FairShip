@@ -1,0 +1,15 @@
+executable            = sim.sh
+request_memory = 2 GB
+request_disk = 2 GB
+should_transfer_files = YES
+when_to_transfer_output = ON_EXIT
+arguments             = $(ClusterId) $(ProcId) $(inFile) $(startEvent) $(nEvents)
+output                = /afs/cern.ch/work/i/ikorol/HTCondor/output/$(ClusterId).$(ProcId).out
+error                 = /afs/cern.ch/work/i/ikorol/HTCondor/error/$(ClusterId).$(ProcId).err
+log                   = /afs/cern.ch/work/i/ikorol/HTCondor/log/$(ClusterId).log
+#requirements = (OpSysAndVer =?= "CentOS7")
+#+JobFlavour = "espresso"
+#+JobFlavour = "longlunch"
++JobFlavour = "workday"
+#+JobFlavour = "tomorrow"
+queue inFile,startEvent,nEvents from queue_list.txt
