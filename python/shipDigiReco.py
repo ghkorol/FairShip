@@ -697,6 +697,13 @@ class ShipDigiReco:
        ElossPerDetId[detID] += Eloss
        listOfVetoPoints[detID].append(key)
        tOfFlight[detID].append(aMCPoint.GetTime())
+     hitWeight=1
+     for aMCtrack in self.sTree.MCTrack:
+        PDGcode=aMCtrack.GetPdgCode()
+       	hitWeight=aMCtrack.GetWeight()
+	#print(PDGcode,hitWeight)
+        if(abs(PDGcode)==13):
+       	       	break
      index=0
      for seg in ElossPerDetId:
        aHit = ROOT.vetoHit(seg,ElossPerDetId[seg])
@@ -704,6 +711,8 @@ class ShipDigiReco:
        if self.digiSBT.GetSize() == index: 
           self.digiSBT.Expand(index+1000)
        if ElossPerDetId[seg]<0.045:    aHit.setInvalid()  # threshold for liquid scintillator, source Berlin group
+       aHit.SetWeight(hitWeight)
+       #print(hitWeight, aHit.GetWeight())
        self.digiSBT[index] = aHit
        v = ROOT.std.vector('int')()
        for x in listOfVetoPoints[seg]:
